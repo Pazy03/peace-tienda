@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{layout/fragmentos :: head}"></th:block>
+    <title>Listado de Categorías</title>
+</head>
+<body>
+
+    <div th:replace="~{layout/fragmentos :: navbar}"></div>
+
+    <main class="container mt-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Listado de Categorías</h2>
+            <a th:href="@{/categoria/nuevo}" class="btn btn-primary">Nueva categoría</a>
+        </div>
+
+        <div th:if="${categorias != null and !categorias.empty}" class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Ruta Imagen</th>
+                        <th>Activo</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="categoria : ${categorias}">
+                        <td th:text="${categoria.idCategoria}"></td>
+                        <td th:text="${categoria.descripcion}"></td>
+                        <td th:text="${categoria.rutaImagen}"></td>
+                        <td th:text="${categoria.activo ? 'Sí' : 'No'}"></td>
+                        <td class="text-center">
+                            <a th:href="@{/categoria/modificar(idCategoria=${categoria.idCategoria})}"
+                               class="btn btn-warning btn-sm me-1">Modificar</a>
+                            <a th:href="@{/categoria/eliminar(idCategoria=${categoria.idCategoria})}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('¿Desea eliminar esta categoría?')">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${categorias == null or categorias.empty}" class="alert alert-info">
+            No hay categorías registradas.
+        </div>
+
+    </main>
+
+    <div th:replace="~{layout/fragmentos :: footer}"></div>
+    <div th:replace="~{layout/fragmentos :: scripts}"></div>
+
+</body>
+</html>

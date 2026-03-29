@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{layout/fragmentos :: head}"></th:block>
+    <title>Iniciar sesión</title>
+</head>
+<body>
+
+    <div th:replace="~{layout/fragmentos :: navbar}"></div>
+
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="mb-4 text-center">Iniciar sesión</h2>
+
+                        <div th:if="${param.error}" class="alert alert-danger text-center">
+                            Usuario o contraseña incorrectos.
+                        </div>
+
+                        <div th:if="${param.logout}" class="alert alert-success text-center">
+                            Sesión cerrada correctamente.
+                        </div>
+
+                        <form th:action="@{/login}" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Usuario</label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Ingresar</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="~{layout/fragmentos :: footer}"></div>
+    <div th:replace="~{layout/fragmentos :: scripts}"></div>
+
+</body>
+</html>

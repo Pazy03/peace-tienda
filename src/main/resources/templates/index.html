@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="~{layout/fragmentos :: head}"></th:block>
+    <title>Inicio - TechShop</title>
+</head>
+<body>
+
+    <div th:replace="~{layout/fragmentos :: navbar}"></div>
+
+    <main class="container mt-5">
+
+        <div class="p-5 mb-4 bg-light rounded-3 shadow-sm">
+            <div class="container-fluid py-4">
+                <h1 class="display-5 fw-bold">Bienvenida a TechShop</h1>
+                <p class="col-md-10 fs-5">
+                    Este proyecto corresponde al curso de Desarrollo de Aplicaciones Web y Patrones.
+                    Aquí se trabaja con Spring Boot, MVC, Thymeleaf, Bootstrap, MySQL,
+                    JPA/Hibernate y Spring Security.
+                </p>
+                <p class="col-md-10">
+                    El sistema permite gestionar categorías y productos, así como realizar
+                    consultas por rango de precios y probar seguridad con roles de usuario.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4" sec:authorize="hasAnyRole('ADMIN','VENDEDOR')">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">Categorías</h4>
+                        <p class="card-text">
+                            Módulo para administrar las categorías registradas en el sistema.
+                        </p>
+                        <a th:href="@{/categoria/listado}" class="btn btn-primary">
+                            Ir a categorías
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4" sec:authorize="hasAnyRole('ADMIN','VENDEDOR')">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">Productos</h4>
+                        <p class="card-text">
+                            Módulo para administrar productos y su relación con categorías.
+                        </p>
+                        <a th:href="@{/producto/listado}" class="btn btn-success">
+                            Ir a productos
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4" sec:authorize="hasAnyRole('ADMIN','VENDEDOR')">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">Consultas</h4>
+                        <p class="card-text">
+                            Módulo para ejecutar consultas derivadas, JPQL y SQL sobre productos.
+                        </p>
+                        <a th:href="@{/consultas/listado}" class="btn btn-dark">
+                            Ir a consultas
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="alert alert-info mt-4" sec:authorize="isAnonymous()">
+            Debe iniciar sesión para acceder a los módulos del sistema.
+        </div>
+
+    </main>
+
+    <div th:replace="~{layout/fragmentos :: footer}"></div>
+    <div th:replace="~{layout/fragmentos :: scripts}"></div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{layout/fragmentos :: head}"></th:block>
+    <title>Acceso denegado</title>
+</head>
+<body>
+
+    <div th:replace="~{layout/fragmentos :: navbar}"></div>
+
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+
+                        <h2 class="mb-3 text-danger">Acceso denegado</h2>
+
+                        <div class="alert alert-danger">
+                            No tiene permisos para acceder a esta sección.
+                        </div>
+
+                        <a th:href="@{/}" class="btn btn-secondary">Volver al inicio</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="~{layout/fragmentos :: footer}"></div>
+    <div th:replace="~{layout/fragmentos :: scripts}"></div>
+
+</body>
+</html>
