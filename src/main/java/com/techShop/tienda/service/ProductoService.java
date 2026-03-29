@@ -5,17 +5,17 @@ import java.util.List;
 
 public interface ProductoService {
 
-    public List<Producto> getProductos();
+    List<Producto> getProductos();
 
-    public Producto getProducto(Producto producto);
+    Producto getProducto(Producto producto);
 
-    public void save(Producto producto);
+    void save(Producto producto);
 
-    public void delete(Producto producto);
+    void delete(Producto producto);
 
-    public List<Producto> consultaDerivada(double precioInf, double precioSup);
+    List<Producto> consultaDerivada(double precioInf, double precioSup);
 
-    public List<Producto> consultaJPQL(double precioInf, double precioSup);
+    List<Producto> consultaJPQL(double precioInf, double precioSup);
 
-    public List<Producto> consultaSQL(double precioInf, double precioSup);
+    List<Producto> consultaSQL(double precioInf, double precioSup);
 }

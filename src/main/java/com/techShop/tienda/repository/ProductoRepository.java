@@ -7,11 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
-    public List<Producto> findByPrecioBetweenOrderByPrecioAsc(double precioInf, double precioSup);
+    List<Producto> findByPrecioBetweenOrderByPrecioAsc(double precioInf, double precioSup);
 
     @Query("SELECT p FROM Producto p WHERE p.precio BETWEEN :precioInf AND :precioSup ORDER BY p.precio ASC")
-    public List<Producto> consultaJPQL(double precioInf, double precioSup);
+    List<Producto> consultaJPQL(double precioInf, double precioSup);
 
     @Query(value = "SELECT * FROM producto p WHERE p.precio BETWEEN :precioInf AND :precioSup ORDER BY p.precio ASC", nativeQuery = true)
-    public List<Producto> consultaSQL(double precioInf, double precioSup);
+    List<Producto> consultaSQL(double precioInf, double precioSup);
 }
